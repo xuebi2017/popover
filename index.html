@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./jquery 3.3.1.js"></script>
     <title>Document</title>
     <style>
         .wrapper {
             position: relative;
-            border: 1px solid red;
+            /* border: 1px solid red; */
             display: inline-block;
         }
         .popover {
@@ -19,6 +20,7 @@
             word-break: keep-all;
             padding: 10px;
             margin-left: 10px;
+            display: none;
         }
         .popover::before {
             content: '';
@@ -33,16 +35,34 @@
             border: 10px solid transparent;
             border-right-color: white;
             position: absolute;
-            right: 100%;
+            right: 99%;
             top: 0;
-            margin-right: -1px;
+            /* margin-right: -1px; */
+        }
+        .show {
+            display: block;
+        }
+        
+        .hide {
+            display: none;
         }
     </style>
 </head>
 <body>
     <div class="wrapper">
-        <button>点我</button>
-        <div class="popover">浮层</div>
+        <button id="clickMe">点我</button>
+        <div class="popover" id="popover">浮层</div>
     </div>
+    <script>
+        clickMe.onclick = function() {
+            $('#popover').toggleClass('show')
+        }
+        document.onclick = function(e) {
+            console.log(e.target)
+            if(!$(e.target).is($('#clickMe')) &!$(e.target).is('#popover')) {
+                $('#popover').addClass('hide').removeClass('show')
+            }
+        }
+    </script>
 </body>
 </html>
